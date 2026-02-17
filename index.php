@@ -5,6 +5,8 @@ define('BASE_PATH', __DIR__);
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $request_method = $_SERVER['REQUEST_METHOD'];
 
+$config = require BASE_PATH . '/config/app.php';
+
 require BASE_PATH . '/core/Router.php';
 
 $router = new Router();

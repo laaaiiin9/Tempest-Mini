@@ -30,10 +30,30 @@ class Router
                 array_shift($matches);
                 //print_r($matches);
 
+                $actions = explode('@', $methods[$request_method]);
+                [$controller, $function] = $actions;
+
+                $controllerPath = BASE_PATH . '/controllers/' . $controller . '.php';
+
+                if (!file_exists($controllerPath)) {
+                    echo "Controller ({$controller}) does not exist in the path.";
+                    return;
+                }
+
+                require BASE_PATH . '/controllers/Controller.php';
+                require $controllerPath;
+
+                $controllerNew = new $controller;
+
+                if (!method_exists($controllerNew, $function)) {
+                    echo "Method ({$function}) does not exist on the Controller ({$controller}).";
+                    return;
+                }
+
                 if (!empty($matches)) {
-                    echo $methods[$request_method];
+                    call_user_func_array([$controllerNew, $function], $matches);
                 } else {
-                    echo $methods[$request_method];
+                    $controllerNew->$function();
                 }
 
                 break;
