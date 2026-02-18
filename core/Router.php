@@ -43,7 +43,10 @@ class Router
                 require BASE_PATH . '/controllers/Controller.php';
                 require $controllerPath;
 
-                $controllerNew = new $controller;
+                $controllerParts = explode('/', $controller);
+                $className = end($controllerParts);
+
+                $controllerNew = new $className;
 
                 if (!method_exists($controllerNew, $function)) {
                     echo "Method ({$function}) does not exist on the Controller ({$controller}).";
