@@ -1,3 +1,11 @@
+<?php
+
+if (isset($_GET['message'])) {
+    echo $_GET['message'];
+}
+
+?>
+
 <form action="/register" method="POST">
 
     <input name="first_name" type="text" placeholder="First Name">
