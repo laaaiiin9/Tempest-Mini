@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($config['app_name']) ?> - <?= htmlspecialchars($title); ?></title>
+    <title><?= htmlspecialchars($config_app['app_name']) ?> - <?= htmlspecialchars($title); ?></title>
 </head>
 <body>
     <?= $content; ?>

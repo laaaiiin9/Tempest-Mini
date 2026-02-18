@@ -3,13 +3,32 @@
 class UserController extends Controller {
 
     public function index(): void {
-        $this->view('users', ['title' => 'Users']);
+        $users = $this->db->query("SELECT * FROM users")->fetchAll();
+
+        $data = [
+            'title' => 'Users',
+            'users' => $users
+        ];
+
+        $this->view('users', $data);
     }
 
     public function getUser($id) {
+        $query = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $query->execute([
+            'id' => $id
+        ]);
+        $user = $query->fetch();
+
+        if (!$user) {
+            echo 'UserID: ' . $id . ' could not be found';
+            return http_response_code(404);
+        }
+
         $data = [
             'title' => "User {$id}",
-            'id' => $id
+            'id' => $id,
+            'user' => $user
         ];
 
         $this->view('user', $data);
