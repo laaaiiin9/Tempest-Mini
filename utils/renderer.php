@@ -14,3 +14,7 @@ function renderView($view, ...$data) {
 
     return $content;
 }
+
+function renderError() {
+
+}

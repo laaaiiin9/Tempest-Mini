@@ -20,4 +20,4 @@ class Controller {
         require BASE_PATH . '/views/' . $config_app['default_view'] . '.php';
     }
 
-}
+}   
