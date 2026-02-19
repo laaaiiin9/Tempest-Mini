@@ -27,16 +27,11 @@ set_error_handler(function ($severity, $message, $file, $line) {
 });
 
 set_exception_handler(function ($exception) {
-    //http_response_code(500);
 
     if (Config::get('app.env') === 'local') {
         Response::abort(500, '<pre>' . $exception . '<pre>');
-        // echo "<pre>";
-        // echo $exception;
-        // echo "</pre>";
     } else {
         Response::abort(500, 'Server Error');
-        //echo renderView('errors/500');
     }
 
     exit;
@@ -44,9 +39,6 @@ set_exception_handler(function ($exception) {
 
 require BASE_PATH . '/db/DB.php';
 DB::initDb();
-// var_dump(DB::getDb());
-// $db = DB::getDb();
-//$db = require BASE_PATH . '/db/DB.php';
 
 require BASE_PATH . '/core/Router.php';
 

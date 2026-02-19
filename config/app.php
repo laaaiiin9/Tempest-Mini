@@ -3,5 +3,5 @@
 return [
     'env' => 'local',
     'app_name' => 'Tempest',
-    'default_view' => 'layouts/default'
+    'layouts_path' => '/views/layouts'
 ];
