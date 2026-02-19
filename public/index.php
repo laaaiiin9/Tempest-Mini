@@ -8,6 +8,11 @@ $request_method = $_SERVER['REQUEST_METHOD'];
 $config_app = require BASE_PATH . '/config/app.php';
 $config_db = require BASE_PATH . '/config/database.php';
 
+require BASE_PATH . '/core/Config.php';
+
+Config::set('app', $config_app);
+Config::set('database', $config_db);
+
 require BASE_PATH . '/core/Response.php';
 $db = require BASE_PATH . '/db/DB.php';
 

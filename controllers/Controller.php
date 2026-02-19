@@ -1,6 +1,6 @@
 <?php
 
-require BASE_PATH . '/utils/renderer.php';
+//require BASE_PATH . '/utils/renderer.php';
 
 class Controller {
 
@@ -12,8 +12,6 @@ class Controller {
     }
 
     public function view($view, $data): void {
-        global $config_app;
-
         $content = renderView($view, $data);
         extract($data);
 

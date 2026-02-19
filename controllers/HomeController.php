@@ -3,7 +3,8 @@
 class HomeController extends Controller {
 
     public function index(): void {
-        $this->view('home', ['title' => 'Home']);
+        Response::view('home', 200, ['title' => 'Home']);
+        // $this->view('home', ['title' => 'Home']);
     }
 
 }

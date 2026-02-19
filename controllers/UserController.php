@@ -10,7 +10,9 @@ class UserController extends Controller {
             'users' => $users
         ];
 
-        $this->view('users', $data);
+        Response::view('users', $data);
+
+        //$this->view('users', $data);
     }
 
     public function getUser($id) {
