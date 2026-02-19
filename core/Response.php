@@ -5,7 +5,7 @@ require BASE_PATH . '/utils/renderer.php';
 class Response
 {
 
-    public static function view($view, $status = 200, $data = [])
+    public static function view($view, $data = [], $status = 200)
     {
         http_response_code($status);
         $content = renderView($view, $data);

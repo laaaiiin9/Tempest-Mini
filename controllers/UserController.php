@@ -33,15 +33,19 @@ class UserController extends Controller {
             'user' => $user
         ];
 
-        $this->view('user', $data);
+        Response::view('user', $data);
+
+        //$this->view('user', $data);
     }
 
     public function addUser() {
         $data = [
             'title' => 'Add User'
         ];
+
+        Response::view('user_add', $data);
         
-        $this->view('user_add', $data);
+        //$this->view('user_add', $data);
     }
 
 }

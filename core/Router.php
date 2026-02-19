@@ -46,7 +46,7 @@ class Router
                 $controllerParts = explode('/', $controller);
                 $className = end($controllerParts);
 
-                $controllerNew = new $className;
+                $controllerNew = new $className(DB::getDb());
 
                 if (!method_exists($controllerNew, $function)) {
                     echo "Method ({$function}) does not exist on the Controller ({$controller}).";
@@ -65,7 +65,8 @@ class Router
         }
 
         if (!$route_found) {
-            echo 'Page not found';
+            //echo 'Page not found';
+            Response::abort(404, 'Page could not be found');
         }
     }
 

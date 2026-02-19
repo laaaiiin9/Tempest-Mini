@@ -3,7 +3,8 @@
 class RegisterController extends Controller {
 
     public function index(): void {
-        $this->view('auth/register', []);
+        //$this->view('auth/register', []);
+        Response::view('auth/register', []);
     }
 
     public function register() {
