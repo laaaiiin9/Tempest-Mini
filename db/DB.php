@@ -19,17 +19,49 @@ class DB
 
             self::$pdo = new PDO($dsn, $user, $pass, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false,
             ]);
         } catch (PDOException $pdoErr) {
             //Response::abort('500', $pdoErr->getMessage());
-            Response::abort('error_pages/500', ['error_code' => 500, 'error_msg' => $pdoErr->getMessage()], 500)->layout('errors');
+            throw $pdoErr;
         }
     }
 
     public static function getDb()
     {
+        if (!self::$pdo) {
+            self::initDb();
+        }
+
         return self::$pdo;
     }
+
+    public static function query($sql, $bindings = [])
+    {
+        $stmt = self::getDb()->prepare($sql);
+        $stmt->execute($bindings);
+        return $stmt;
+    }
+
+    public static function beginTransaction()
+    {
+        self::getDb()->beginTransaction();
+    }
+
+    public static function commit()
+    {
+        if (self::$pdo && self::$pdo->inTransaction()) {
+            self::getDb()->commit();
+        }
+    }
+
+    public static function rollBack()
+    {
+        if (self::$pdo && self::$pdo->inTransaction()) {
+            self::getDb()->rollBack();
+        }
+    }
+
 }
 

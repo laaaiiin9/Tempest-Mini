@@ -15,7 +15,13 @@ class Model
     {
         $instance = new static;
 
-        $sql = "SELECT * FROM " . static::$table . " WHERE $column = :value";
+        $allowedColumns = static::$fillable ?? [];
+
+        if (!in_array($column, $allowedColumns)) {
+            throw new Exception("Invalid column name.");
+        }
+
+        $sql = "SELECT * FROM " . static::$table . " WHERE `$column` OR 1=1 = :value";
 
         $instance::$query = static::db()->prepare($sql);
         $instance::$bindings = ['value' => $value];

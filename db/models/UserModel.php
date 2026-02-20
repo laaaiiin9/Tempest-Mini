@@ -6,4 +6,10 @@ class UserModel extends Model {
 
     protected static $table = 'users';
 
+    protected static $fillable = [
+        'id',
+        'first_name',
+        'last_name'
+    ];
+
 }

@@ -4,7 +4,9 @@ class RegisterController extends Controller {
 
     public function index(): void {
         //$this->view('auth/register', []);
-        Response::view('auth/register', []);
+        //Response::view('auth/register', []);
+        $title = 'Register';
+        View::render('auth/register', compact('title'));
     }
 
     public function register() {
