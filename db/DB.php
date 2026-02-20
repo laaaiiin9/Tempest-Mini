@@ -22,7 +22,8 @@ class DB
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
         } catch (PDOException $pdoErr) {
-            Response::abort('500', $pdoErr->getMessage());
+            //Response::abort('500', $pdoErr->getMessage());
+            Response::abort('error_pages/500', ['error_code' => 500, 'error_msg' => $pdoErr->getMessage()])->layout('errors');
         }
     }
 

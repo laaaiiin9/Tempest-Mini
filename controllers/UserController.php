@@ -17,19 +17,14 @@ class UserController extends Controller {
 
     public function getUser($id) {
 
-        // $query = $this->db->prepare("SELECT * FROM users WHERE id = :id");
-        // $query->execute([
-        //     'id' => $id
-        // ]);
-        // $user = $query->fetch();
-
         $user = UserModel::where('id', $id)->first();
 
         if (!$user) {
             // echo 'UserID: ' . $id . ' could not be found';
             // return http_response_code(404);
             $msg = 'UserID: ' . $id . ' could not be found';
-            Response::abort(404, $msg);
+            //Response::abort(404, $msg);
+            Response::abort('error_pages/404', ['error_code' => 404, 'error_msg' => $msg])->layout('errors');
         }
 
         $data = [

@@ -43,22 +43,30 @@ class Response
         require BASE_PATH . Config::get('app.layouts_path') . "/{$this->layout}.php";
     }
 
+    public static function abort($view, $data = [], $status = 200)
+    {
+        $instance = new self;
+
+        $instance->view = $view;
+        $instance->data = $data;
+        $instance->status = $status;
+
+        return $instance;
+        // http_response_code($status);
+
+        // $errorView = 'error_pages/' . $status;
+
+        // echo renderView($errorView, [
+        //     'title' => $status,
+        //     'errMsg' => $errMsg
+        // ]);
+
+        // exit;
+    }
+
     public function __destruct()
     {
         $this->render();
     }
 
-    public static function abort($status, $errMsg)
-    {
-        http_response_code($status);
-
-        $errorView = 'error_pages/' . $status;
-
-        echo renderView($errorView, [
-            'title' => $status,
-            'errMsg' => $errMsg
-        ]);
-
-        exit;
-    }
 }
