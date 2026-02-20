@@ -66,7 +66,7 @@ class Router
 
         if (!$route_found) {
             //echo 'Page not found';
-            Response::abort('error_pages/404', ['error_code' => 404])->layout('errors');
+            Response::abort('error_pages/404', ['error_code' => 404], 404)->layout('errors');
             //Response::abort(404, 'Page could not be found');
         }
     }

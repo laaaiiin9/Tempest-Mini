@@ -33,10 +33,10 @@ class App
 
             if (Config::get('app.env') === 'local') {
                 //Response::abort(500, '<pre>' . $exception . '<pre>');
-                Response::abort('error_pages/500', ['error_code' => 500, 'error_msg' => $exception])->layout('errors');
+                Response::abort('error_pages/500', ['error_code' => 500, 'error_msg' => $exception], 500)->layout('errors');
             } else {
                 //Response::abort(500, 'Server Error');
-                Response::abort('error_pages/500', ['error_code' => 500])->layout('errors');
+                Response::abort('error_pages/500', ['error_code' => 500], 500)->layout('errors');
             }
 
             exit;

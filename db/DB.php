@@ -23,7 +23,7 @@ class DB
             ]);
         } catch (PDOException $pdoErr) {
             //Response::abort('500', $pdoErr->getMessage());
-            Response::abort('error_pages/500', ['error_code' => 500, 'error_msg' => $pdoErr->getMessage()])->layout('errors');
+            Response::abort('error_pages/500', ['error_code' => 500, 'error_msg' => $pdoErr->getMessage()], 500)->layout('errors');
         }
     }
 

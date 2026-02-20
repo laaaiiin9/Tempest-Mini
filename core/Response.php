@@ -43,7 +43,7 @@ class Response
         require BASE_PATH . Config::get('app.layouts_path') . "/{$this->layout}.php";
     }
 
-    public static function abort($view, $data = [], $status = 200)
+    public static function abort($view, $data = [], $status = 500)
     {
         $instance = new self;
 
