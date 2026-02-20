@@ -1,3 +1,7 @@
+<?php View::extend('layouts/default'); ?>
+
+<?php View::section('content'); ?>
+
 <?php
 $rows = count($users ?? []);
 ?>
@@ -6,9 +10,12 @@ $rows = count($users ?? []);
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold tracking-tight text-white">Users</h1>
-            <p class="mt-1 text-sm text-slate-400">Total records: <?= (int) $rows ?></p>
+            <p class="mt-1 text-sm text-slate-400">Total records:
+                <?= (int) $rows ?>
+            </p>
         </div>
-        <a href="/user/add" class="rounded-md bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400">
+        <a href="/user/add"
+            class="rounded-md bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400">
             Add User
         </a>
     </div>
@@ -35,16 +42,29 @@ $rows = count($users ?? []);
                     <?php else: ?>
                         <?php foreach ($users as $user): ?>
                             <tr class="hover:bg-slate-800/50">
-                                <td class="whitespace-nowrap px-4 py-3 text-slate-300"><?= htmlspecialchars((string) ($user['id'] ?? '-')) ?></td>
-                                <td class="whitespace-nowrap px-4 py-3 text-slate-100"><?= htmlspecialchars((string) ($user['first_name'] ?? '-')) ?></td>
-                                <td class="whitespace-nowrap px-4 py-3 text-slate-100"><?= htmlspecialchars((string) ($user['last_name'] ?? '-')) ?></td>
-                                <td class="whitespace-nowrap px-4 py-3 text-slate-300"><?= htmlspecialchars((string) ($user['email'] ?? '-')) ?></td>
-                                <td class="whitespace-nowrap px-4 py-3 text-slate-300"><?= htmlspecialchars((string) ($user['age'] ?? '-')) ?></td>
-                                <td class="whitespace-nowrap px-4 py-3 text-slate-300"><?= htmlspecialchars((string) ($user['city'] ?? '-')) ?></td>
+                                <td class="whitespace-nowrap px-4 py-3 text-slate-300">
+                                    <?= htmlspecialchars((string) ($user['id'] ?? '-')) ?>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-slate-100">
+                                    <?= htmlspecialchars((string) ($user['first_name'] ?? '-')) ?>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-slate-100">
+                                    <?= htmlspecialchars((string) ($user['last_name'] ?? '-')) ?>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-slate-300">
+                                    <?= htmlspecialchars((string) ($user['email'] ?? '-')) ?>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-slate-300">
+                                    <?= htmlspecialchars((string) ($user['age'] ?? '-')) ?>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-slate-300">
+                                    <?= htmlspecialchars((string) ($user['city'] ?? '-')) ?>
+                                </td>
                                 <td class="whitespace-nowrap px-4 py-3">
                                     <?php $userId = $user['id'] ?? null; ?>
                                     <?php if ($userId): ?>
-                                        <a href="/user/<?= urlencode((string) $userId) ?>" class="inline-flex rounded-md border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-800">View</a>
+                                        <a href="/user/<?= urlencode((string) $userId) ?>"
+                                            class="inline-flex rounded-md border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-800">View</a>
                                     <?php else: ?>
                                         <span class="text-xs text-slate-500">N/A</span>
                                     <?php endif; ?>
@@ -57,3 +77,6 @@ $rows = count($users ?? []);
         </div>
     </div>
 </section>
+
+
+<?php View::endSection(); ?>

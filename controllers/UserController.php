@@ -5,14 +5,12 @@ require_once BASE_PATH . '/db/models/UserModel.php';
 class UserController extends Controller {
 
     public function index(): void {
+        $title = 'Users';
         $users = UserModel::all();
 
-        $data = [
-            'title' => 'Users',
-            'users' => $users
-        ];
+        View::render('users', compact('users', 'title'));
 
-        Response::view('users', $data);
+        //Response::view('users', $data);
     }
 
     public function getUser($id) {
@@ -26,14 +24,17 @@ class UserController extends Controller {
             //Response::abort(404, $msg);
             Response::abort('error_pages/404', ['error_code' => 404, 'error_msg' => $msg])->layout('errors');
         }
+        $title = "User {$id}";
 
-        $data = [
-            'title' => "User {$id}",
-            'id' => $id,
-            'user' => $user
-        ];
+        // $data = [
+        //     'title' => "User {$id}",
+        //     'id' => $id,
+        //     'user' => $user
+        // ];
 
-        Response::view('user', $data);
+        View::render('user', compact('user', 'title'));
+
+        //Response::view('user', $data);
     }
 
     public function addUser() {

@@ -23,6 +23,7 @@ class App
         }
 
         require BASE_PATH . '/core/Response.php';
+        require BASE_PATH . '/core/View.php';
 
         set_error_handler(function ($severity, $message, $file, $line) {
             throw new ErrorException($message, 0, $severity, $file, $line);
