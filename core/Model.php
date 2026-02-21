@@ -21,7 +21,7 @@ class Model
             throw new Exception("Invalid column name.");
         }
 
-        $sql = "SELECT * FROM " . static::$table . " WHERE `$column` OR 1=1 = :value";
+        $sql = "SELECT * FROM " . static::$table . " WHERE `$column` = :value";
 
         $instance::$query = static::db()->prepare($sql);
         $instance::$bindings = ['value' => $value];

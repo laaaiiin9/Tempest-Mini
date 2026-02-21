@@ -21,7 +21,44 @@ class View
 
         ob_start();
         require $viewPath;
-        ob_end_clean();
+        
+        if (self::$layout) {
+            ob_end_clean();
+        } else {
+            echo ob_get_clean();
+        }
+
+        if (self::$layout) {
+            echo self::renderLayout($data);
+            return;
+        }
+
+        echo '';
+    }
+
+    public static function abort($view, array $data = [], $status = 500)
+    {
+        self::$sections = [];
+        self::$layout = '';
+
+        http_response_code($status);
+
+        $viewPath = BASE_PATH . '/views/' . $view . '.php';
+
+        if (!file_exists($viewPath)) {
+            throw new Exception("View [$view] not found.");
+        }
+        
+        extract($data);
+
+        ob_start();
+        require $viewPath;
+
+        if (self::$layout) {
+            ob_end_clean();
+        } else {
+            echo ob_get_clean();
+        }
 
         if (self::$layout) {
             echo self::renderLayout($data);

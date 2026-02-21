@@ -1,3 +1,6 @@
+<?php View::extend('layouts/errors'); ?>
+
+<?php View::section('content'); ?>
 <section class="w-full max-w-2xl rounded-2xl border border-slate-800 bg-slate-950/70 p-8 shadow-2xl">
     <p class="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">Page Not Found</p>
     <h1 class="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">404</h1>
@@ -14,3 +17,4 @@
         Back to Home
     </a>
 </section>
+<?php View::endSection(); ?>

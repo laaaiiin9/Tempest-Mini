@@ -6,6 +6,6 @@
     <title><?= htmlspecialchars(Config::get('app.app_name')) ?> Admin - <?= htmlspecialchars($title ?? ''); ?></title>
 </head>
 <body>
-    <?= $content; ?>
+    <?php View::yield('content'); ?>
 </body>
 </html>

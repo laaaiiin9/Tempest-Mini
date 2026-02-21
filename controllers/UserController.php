@@ -1,5 +1,7 @@
 <?php
 
+use Uri\WhatWg\InvalidUrlException;
+
 require_once BASE_PATH . '/db/models/UserModel.php';
 
 class UserController extends Controller {
@@ -22,7 +24,9 @@ class UserController extends Controller {
             // return http_response_code(404);
             $msg = 'UserID: ' . $id . ' could not be found';
             //Response::abort(404, $msg);
-            Response::abort('error_pages/404', ['error_code' => 404, 'error_msg' => $msg])->layout('errors');
+            //Response::abort('error_pages/404', ['error_code' => 404, 'error_msg' => $msg])->layout('errors');
+            throw new Exception();
+            //View::abort('errors/404', ['error_code' => 404, 'error_msg' => $msg]);
         }
         $title = "User {$id}";
 
@@ -42,7 +46,8 @@ class UserController extends Controller {
             'title' => 'Add User'
         ];
 
-        Response::view('user_add', $data);
+        //Response::view('user_add', $data);
+        View::render('user_add', ['title' => 'Add User']);
     }
 
 }

@@ -10,7 +10,7 @@
 
 <body class="min-h-screen bg-black text-slate-100 antialiased">
     <main class="flex min-h-screen items-center justify-center px-4">
-        <?= $content ?>
+        <?php View::yield('content'); ?>
     </main>
 </body>
 

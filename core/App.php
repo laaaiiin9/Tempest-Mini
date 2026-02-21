@@ -22,7 +22,6 @@ class App
             ini_set('display_errors', 0);
         }
 
-        require BASE_PATH . '/core/Response.php';
         require BASE_PATH . '/core/View.php';
 
         set_error_handler(function ($severity, $message, $file, $line) {
@@ -33,10 +32,16 @@ class App
 
             if (Config::get('app.env') === 'local') {
                 //Response::abort(500, '<pre>' . $exception . '<pre>');
-                Response::abort('error_pages/500', ['error_code' => 500, 'error_msg' => $exception], 500)->layout('errors');
+                //Response::abort('errors/500', ['error_code' => 500, 'error_msg' => $exception], 500)->layout('errors');
+                View::abort('errors/500', [
+                    'error_code' => 500, 'error_msg' => $exception
+                ], 500);
             } else {
                 //Response::abort(500, 'Server Error');
-                Response::abort('error_pages/500', ['error_code' => 500], 500)->layout('errors');
+                //Response::abort('error_pages/500', ['error_code' => 500], 500)->layout('errors');
+                View::abort('errors/500', [
+                    'error_code' => 500
+                ], 500);
             }
 
             exit;

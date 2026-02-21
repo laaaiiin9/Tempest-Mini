@@ -1,3 +1,7 @@
+<?php View::extend('layouts/default'); ?>
+
+<?php View::section('content'); ?>
+
 <form action="" method="POST">
 
     <input type="email" placeholder="email">
@@ -6,3 +10,5 @@
     <button type="submit">Submit</button>
 
 </form>
+
+<?php View::endSection(); ?>
