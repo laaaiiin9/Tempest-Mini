@@ -1,7 +1,12 @@
 <?php
 
 return [
-    'env' => 'prod',
+    'env' => 'local',
     'app_name' => 'Tempest',
-    'layouts_path' => '/views/layouts'
+    'rate_limits' => [
+        'register' => [
+            'max_attempts' => 5,
+            'decay_seconds' => 60,
+        ],
+    ],
 ];

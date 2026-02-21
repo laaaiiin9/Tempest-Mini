@@ -6,7 +6,6 @@ class HomeController extends Controller {
         $title = 'Home';
         
         View::render('home', compact('title'));
-        // Response::view('home', ['title' => 'Home']);
     }
 
 }
